@@ -16,33 +16,29 @@ Steps
 
 Problem Statement 2 - Functions problem statement
 # Description
-<Write some description for your solution>
+I have declared all the functions and appropriate comments in the code
 
 # Prerequisite
-<Write any prerequisites needed to run your solution>
+Azure data factory functions were used along side python functions
 
 # How to run
-<Write steps to run your solution>
+
 Steps
-1.
-2.
+1.Copy the code into Azure cloud fucntions executors
+2.run the code with all boundary test cases provided  in the comments
 
 # Any other points to mention
-<Any other points if you want to mention>
+Some codes don't require python also, in them I have written adf fucntions directly
 
 Problem Statement 3 - XML problem statement
 # Description
-<Write some description for your solution>
+I have imported  xml.etree.ElementTree
 
 # Prerequisite
-<Write any prerequisites needed to run your solution>
+partially done
 
-# How to run
-<Write steps to run your solution>
-Steps
-1.
-2.
+
 
 # Any other points to mention
-  
-<Any other points if you want to mention>
+  partially done
+
