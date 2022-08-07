@@ -32,7 +32,7 @@ Some codes don't require python also, in them I have written adf fucntions direc
 
 Problem Statement 3 - XML problem statement
 # Description
-I have imported  xml.etree.ElementTree
+partially done
 
 # Prerequisite
 partially done
