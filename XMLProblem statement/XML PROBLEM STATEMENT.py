@@ -67,15 +67,15 @@ for i in mappings:
         if k in d_source.keys():
             fs = 'Source(' + k + '.' + str(v) + ')'
         
-        if 'sq_'+k in d_sq.keys():
+        if 'sq_'+ k in d_sq.keys():
             fs = fs + '--> Source Qualifier(' + 'sq_'+ k + '.' + str(d_sq.get('sq_'+k)) + ')'
             
         if 'exp_'+k[:-9:] + k[-7::] in d_exp.keys():
-            fs = fs + '--> Expression(' + 'exp_'+ k + '.' + str(d_exp.get('exp_'+k)) + ')'
+            fs = fs + '--> Expression(' + 'exp_'+ k + '.' + str(d_exp.get('exp_'+k[:-9:] + k[-7::])) + ')'
             
             
         if 'upd_'+k[:-9:] + k[-7::] in d_us.keys():
-            fs = fs + '--> Update Strategy(' + 'upd_'+ k + '.' + str(d_us.get('upd_'+k)) + ')'
+            fs = fs + '--> Update Strategy(' + 'upd_'+ k + '.' + str(d_us.get('upd_'+k[:-9:] + k[-7::])) + ')'
 
         if k in d_target.keys():
             fs = fs + '--> Target(' + k + '.' + str(d_target.get(k)) + ')'
