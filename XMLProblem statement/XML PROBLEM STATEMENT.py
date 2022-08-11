@@ -1,7 +1,7 @@
 import xml.dom.minidom as xdm
 from pprint import pprint
 
-data = xdm.parse("test.xml")
+data = xdm.parse(r"C:\Users\Latha\OneDrive\Desktop\informartica.xml")
 mappings = data.getElementsByTagName("MAPPING")
 
 for i in mappings:
@@ -43,6 +43,7 @@ for i in mappings:
     d_sq = {}
     d_exp = {}
     d_us = {}
+    d_target = {}
     for x in set(source_list):
         d_source[x.getAttribute("FROMINSTANCE").lower()] = [k.getAttribute("FROMFIELD") for k in source_list if
                                                     k.getAttribute("FROMINSTANCE") == x.getAttribute("FROMINSTANCE")]
@@ -58,22 +59,29 @@ for i in mappings:
                                                 k.getAttribute("FROMINSTANCE") == x.getAttribute("FROMINSTANCE")]
 
     for x in set(target_list):
-        d_us[x.getAttribute("TOINSTANCE").lower()] = [k.getAttribute("TOFIELD") for k in target_list if
+        d_target[x.getAttribute("TOINSTANCE").lower()] = [k.getAttribute("TOFIELD") for k in target_list if
                                                 k.getAttribute("TOINSTANCE") == x.getAttribute("TOINSTANCE")]
 
     # pprint([x.getAttribute("TOINSTANCE") for x in sq_list])
     for k, v in d_source.items():
-        fs = 'source(' + k + '.' + str(v) + ')'
+        if k in d_source.keys():
+            fs = 'Source(' + k + '.' + str(v) + ')'
+        
         if 'sq_'+k in d_sq.keys():
-            fs = fs + '-> source Qualifier(' + 'sq_'+k + '.' + str(d_sq.get('sq_'+k)) + ')'
-        if 'exp_'+k in d_exp.keys():
-            fs = fs + '-> expression(' + 'exp_'+k + '.' + str(d_exp.get('exp_'+k)) + ')'
-        if 'upd_'+k in d_us.keys():
-            fs = fs + '-> update s(' + 'upd_'+k + '.' + str(d_us.get('upd_'+k)) + ')'
-        if 'upd_'+k in d_us.keys():
-            fs = fs + '-> target s(' + 'upd_'+k + '.' + str(d_us.get('upd_'+k)) + ')'
+            fs = fs + '--> Source Qualifier(' + 'sq_'+ k + '.' + str(d_sq.get('sq_'+k)) + ')'
+            
+        if 'exp_'+k[:-9:] + k[-7::] in d_exp.keys():
+            fs = fs + '--> Expression(' + 'exp_'+ k + '.' + str(d_exp.get('exp_'+k)) + ')'
+            
+            
+        if 'upd_'+k[:-9:] + k[-7::] in d_us.keys():
+            fs = fs + '--> Update Strategy(' + 'upd_'+ k + '.' + str(d_us.get('upd_'+k)) + ')'
+
+        if k in d_target.keys():
+            fs = fs + '--> Target(' + k + '.' + str(d_target.get(k)) + ')'
+            
+       
+            
+       
         print(fs)
-        print('%%%%%%%%%%%%%%%%%')
-        print(d_source.keys(), '|', d_sq.keys(), '|', d_exp.keys(), '|', d_us.keys())
-        print('*******')
-    print('=============================================')
+        print("=================================================================================")
